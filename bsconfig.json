@@ -10,7 +10,7 @@
     "in-source": true
   },
   "entries": [{
-    "backend": "bytecode",
+    "backend": "native",
     "main-module": "Index"
   }],
   "suffix": ".bs.js",
