@@ -1,16 +1,10 @@
 open Opium.Std;
 
-/* Callbag.(
-  generateId
-  |> filter(n => n mod 2 === 0)
-  |> map(string_of_int)
-  |> take(5)
-  |> forEach(a => print_string(a))
-); */
-
 let print_param = get("/hello/:name", (req => {
   `String(param(req, "name")) |> respond'
 }));
+
+let b = Belt.List.map([1, 2,3], x => x + 1);
 
 let _ = App.empty
   |> print_param
