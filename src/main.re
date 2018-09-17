@@ -1,13 +1,13 @@
+open Opium.Std;
 
-let example = [1, 2, 3, 4, 5, 6];
-
-/* Curently forced to inject wonka as bs-native can't be compiled properly */
-Wonka.fromList(example)
-|> Wonka.filter(x => x mod 2 === 0)
-|> Wonka.map(x => x * 2)
-|> Wonka.forEach(x => print_endline(string_of_int(x)));
-
-open Opium.Std
+Callbag.(
+  generateId
+  |> filter(n => n mod 2 === 0)
+  |> map(string_of_int)
+  |> take(5)
+  |> delay(100)
+  |> forEach(a => Js.log(a))
+);
 
 let print_param = get("/hello/:name", (req => {
   `String(param(req, "name")) |> respond'
