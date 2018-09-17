@@ -2,7 +2,7 @@
   "name": "reason-server",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world -backend native -I /home/august/.opam/4.06.1/lib/opium",
+    "build": "bsb -make-world -backend native",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world"
   },

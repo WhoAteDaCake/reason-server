@@ -11,11 +11,12 @@
   },
   "entries": [{
     "backend": "native",
-    "main-module": "Index"
+    "main-module": "Main"
   }],
   "suffix": ".bs.js",
   "bs-dependencies": [
   ],
+  "bsc-flags": ["-I /home/august/.opam/4.06.1/lib/opium"],
   "warnings": {
     "error" : "+101"
   },
