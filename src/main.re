@@ -1,14 +1,20 @@
-open Opium.Std;
+/* open Opium.Std;
 
 let print_param = get("/hello/:name", (req => {
   `String(param(req, "name")) |> respond'
-}));
+})); */
 
-let b = Belt.List.map([1, 2,3], x => x + 1);
+let example = [1, 2, 3, 4, 5, 6];
 
-let _ = App.empty
+Wonka.fromList(example)
+  |> Wonka.filter(x => x mod 2 === 0)
+  |> Wonka.map(x => x * 2)
+  |> Wonka.forEach(x => print_endline(string_of_int(x)));
+/* Belt.List.forEach(["test\n", "test2\n"], print_string); */
+
+/* let _ = App.empty
   |> print_param
-  |> App.run_command;
+  |> App.run_command; */
 /* 
 type person = {
   name: string;
