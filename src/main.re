@@ -1,13 +1,12 @@
 open Opium.Std;
 
-Callbag.(
+/* Callbag.(
   generateId
   |> filter(n => n mod 2 === 0)
   |> map(string_of_int)
   |> take(5)
-  |> delay(100)
-  |> forEach(a => Js.log(a))
-);
+  |> forEach(a => print_string(a))
+); */
 
 let print_param = get("/hello/:name", (req => {
   `String(param(req, "name")) |> respond'
