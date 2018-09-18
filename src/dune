@@ -1,6 +1,6 @@
 ;; This declares the hello_world executable implemented by hello_world.ml
 (executable
   (name main)
-  (libraries opium Belt))
+  (libraries opium Belt core redis-lwt))
 
 (include_subdirs unqualified)
