@@ -4,7 +4,11 @@
   "version": "1.0.0",
   "esy": {
     "build": "dune build",
-    "NOTE": "Optional release Section. Customizes result of `esy release`"
+    "release": {
+      "releasedBinaries": [
+        "main"
+      ]
+    }
   },
   "dependencies": {
     "@opam/dune": "*",

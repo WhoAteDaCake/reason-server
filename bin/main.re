@@ -21,6 +21,3 @@ let print_person =
 
 Redis.subscribe("localhost", 6000);
 App.empty |> print_person |> App.run_command;
-/* let _ = () => { */
-
-/* }; */
