@@ -3,4 +3,4 @@
 (executable
   (name rserver)
   (public_name rserver)
-  (libraries Belt opium core redis-lwt))
+  (libraries Belt opium core redis))
