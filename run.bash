@@ -1,2 +1,2 @@
-cd bin && dune build main.exe 
-../_build/default/src/main.exe
+cd src && dune build rserver.exe
+../_build/default/src/reason-server.exe
