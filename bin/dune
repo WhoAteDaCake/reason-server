@@ -1,3 +1,6 @@
+(include_subdirs unqualified)
+
 (executable
-  (name main)
-  (libraries lib))
+  (name reason-server)
+  (public_name reason-server)
+  (libraries Belt opium core redis-lwt))
