@@ -1,1 +1,0 @@
-let subscribe = (host, port) => RedisSubscribe.subscribe_lwt(host, port);

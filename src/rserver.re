@@ -19,5 +19,5 @@ let print_person =
     `Json(person |> json_of_person) |> respond';
   });
 
-Redis.subscribe("localhost", 6000);
+RedisRe.subscribe("localhost", 7000);
 App.empty |> print_person |> App.run_command;
