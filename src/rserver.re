@@ -1,4 +1,4 @@
-open Opium.Std;
+/*open Opium.Std;
 
 type person = {
   name: string,
@@ -18,6 +18,6 @@ let print_person =
     };
     `Json(person |> json_of_person) |> respond';
   });
-
+*/
 RedisRe.subscribe("localhost", 7000);
-App.empty |> print_person |> App.run_command;
+/*App.empty |> print_person |> App.run_command;*/
