@@ -1,48 +1,37 @@
 open Core;
-open Lwt;
+open Lwt.Infix;
 
 module Server = Opium.Std;
 module Client = Redis_lwt.Client;
+module App = Server.App;
 
 let resp_to_text = opt =>
   switch (opt) {
-  | Some(opt) => Lwt.return(opt)
-  | None => Lwt.return("None")
+  | Some(opt) => opt
+  | None => "Not found"
   };
 
 let connection = Client.connect({host: "localhost", port: 7000});
+/* Unwraps connection */
+let connected = fn => connection >>= fn;
 
 let get_data =
   Server.get("/redis/:channel/:hash", req => {
     let channel = Server.param(req, "channel");
     let hash = Server.param(req, "hash");
-    connection
-    >>= (c => Client.hget(c, channel, hash))
-    >>= resp_to_text
+    Client.hget(_, channel, hash)
+    |> connected
+    >|= resp_to_text
     >>= (text => Server.(`String(text) |> respond'));
   });
 
-let _ = Server.App.empty |> get_data |> Server.App.run_command;
+let create_data =
+  Server.post("/tasks/:channel", req => {
+    let channel = Server.param(req, "channel");
+    App.json_of_body_exn(req)
+    >|= Parser.task_from_json
+    >>= (task => Client.hset(_, channel, task.id, task.name) |> connected)
+    >|= (_x => Server.(`String("Done") |> respond));
+  });
 
-/*
-
- type person = {
-   name: string,
-   age: int,
- };
-
- let json_of_person = person =>
-   Ezjsonm.(
-     [("name", person.name |> string), ("age", person.age |> int)] |> dict
-   );
-
- let print_person =
-   get("/person/:name/:age", req => {
-     let person = {
-       name: param(req, "name"),
-       age: param(req, "age") |> int_of_string,
-     };
-     `Json(person |> json_of_person) |> respond';
-   });
- */
-/*App.empty |> print_person |> App.run_command;*/
+let _ = App.empty |> get_data |> create_data |> App.run_command;
